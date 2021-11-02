@@ -1,0 +1,13 @@
+---
+- name: Banner test
+  hosts: all
+  tasks:
+          - name: check Banner display
+            fetch:
+                    src: /etc/ssh/my_banner
+                    dest: /tmp/Banner_check
+          - name: Get sshd config file
+            fetch:
+                    src: /etc/ssh/sshd_config
+                    dest: /tmp/Banner_check
+...
