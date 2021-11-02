@@ -1,0 +1,32 @@
+---
+- hosts: all
+  gather_facts: true
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+          - name: hostname
+            command: hostname
+            register: hostname
+          - debug: var=hostname.stdout_lines
+          - name: os_details
+            command: uname -a
+            register: osdetails
+          - debug: var=osdetails.stdout_lines
+          - name: starttime
+            command: who -b
+            register: startime
+          - debug: var=startime.stdout_lines
+          - name: memory_information
+            command: free -m
+            register: memory
+          - debug: var=memory.stdout_lines
+          - name: uptime
+            command: uptime
+            register: uptime
+          - debug: var=uptime.stdout_lines
+          - name: filesystem
+            command: df -h
+            register: filesystem
+          - debug: var=filesystem.stdout_lines
+...
